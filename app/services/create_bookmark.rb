@@ -7,11 +7,10 @@ class CreateBookmark < Service
   def create
     req = request "/bookmarks", :post, body: post_data
     data = OpenStruct.new(JSON.parse(req.body)["bookmark"])
-    #require "pry"; binding.pry
     @bookmark = Bookmark.new(
-      id: data.id,
-      title: data.title,
-      url: data.url
+      "id" => data.id,
+      "title" => data.title,
+      "url" => data.url
     )
 
     req.code.to_i
